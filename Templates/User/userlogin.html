@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RepairX - User Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #333333;
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e6b800;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            fill: #e6b800;
+        }
+
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background-color: #e6b800;
+            color: #2d2d2d;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #d4a100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(230, 184, 0, 0.3);
+        }
+
+        /* Login Container */
+        .login-container {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .login-container:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-container h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #e6b800;
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #cccccc;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 2px solid #e6b800;
+            border-radius: 25px;
+            background: #2d2d2d;
+            color: #ffffff;
+            transition: border-color 0.3s ease, background 0.3s ease;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: #d4a100;
+            background: #3d3d3d;
+        }
+
+        /* Remove Up/Down Arrows for Number Inputs */
+        .input-field[type="number"] {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        .input-field[type="number"]::-webkit-inner-spin-button,
+        .input-field[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Login Button */
+        .login-btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: #e6b800;
+            color: #2d2d2d;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .login-btn:hover {
+            background-color: #d4a100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(230, 184, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .navbar-logo {
+                margin: 0.5rem 0;
+            }
+
+            .login-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+
+            .input-field {
+                padding: 0.5rem;
+            }
+
+            .login-btn {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>RepairX</h1>
+        <svg class="navbar-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <polygon points="12 2 18.36 6.36 20 12 18.36 17.64 12 22 5.64 17.64 4 12 5.64 6.36 12 2" fill="#e6b800"/>
+        </svg>
+        <a href="index.html" class="home-btn">Home</a>
+    </div>
+
+    <div class="login-container">
+        <h2>User Login</h2>
+        <form id="loginForm" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="phone">Phone Number (10 digits)</label>
+                <input type="number" id="phone" name="phno" class="input-field" placeholder="Enter 10-digit phone number" pattern="\d{10}" title="Please enter a 10-digit phone number" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="pswd" class="input-field" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+</body>
+</html>

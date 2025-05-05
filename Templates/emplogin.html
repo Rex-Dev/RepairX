@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RepairX - Employee Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #333333;
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e6b800;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            fill: #e6b800;
+        }
+
+        .home-btn {
+            padding: 0.5rem 1rem;
+            background-color: #e6b800;
+            color: #2d2d2d;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #d4a100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(230, 184, 0, 0.3);
+        }
+
+        /* Background Gear Animation */
+        .gear-bg {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e6b80033"><path d="M12 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm0 17a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm9-7a1 1 0 011 1h-1a1 1 0 11-2 0h-1a1 1 0 011-1zm-17 0a1 1 0 011 1H5a1 1 0 11-2 0h-1a1 1 0 011-1zm15.364-6.364a1 1 0 011.414 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707zm-12.728 12.728a1 1 0 011.414 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707zm12.728-12.728l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM6.636 17.364l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM12 6a6 6 0 110 12 6 6 0 010-12z"/></svg>') no-repeat center;
+            opacity: 0.1;
+            animation: rotateGear 10s linear infinite;
+        }
+
+        @keyframes rotateGear {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Login Container */
+        .login-container {
+            background: rgba(26, 26, 26, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .login-container:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-container h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #e6b800;
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #cccccc;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 2px solid #e6b800;
+            border-radius: 25px;
+            background: #2d2d2d;
+            color: #ffffff;
+            transition: border-color 0.3s ease, background 0.3s ease;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: #d4a100;
+            background: #3d3d3d;
+        }
+
+        /* Remove Up/Down Arrows for Number Inputs */
+        .input-field[type="number"] {
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+
+        .input-field[type="number"]::-webkit-inner-spin-button,
+        .input-field[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Login Button */
+        .login-btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: #e6b800;
+            color: #2d2d2d;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .login-btn:hover {
+            background-color: #d4a100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(230, 184, 0, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .navbar-logo {
+                margin: 0.5rem 0;
+            }
+
+            .login-container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container h2 {
+                font-size: 1.5rem;
+            }
+
+            .input-field {
+                padding: 0.5rem;
+            }
+
+            .login-btn {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>RepairX</h1>
+        <svg class="navbar-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M22.67 3.14a1 1 0 0 0-1.42-.06L15.71 8H4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h11.71l5.54 4.86a1 1 0 0 0 1.42-.06 1 1 0 0 0 .33-.76V4a1 1 0 0 0-.33-.86zM5 14V10h10v4H5zm16 0h-2v-4h2v4z"/>
+        </svg>
+        <a href="index.html" class="home-btn">Home</a>
+    </div>
+
+    <div class="gear-bg" style="top: 10%; left: 10%;"></div>
+    <div class="gear-bg" style="top: 70%; right: 10%; transform: scale(0.8);"></div>
+    <div class="login-container">
+        <h2>Employee Login</h2>
+        <form id="loginForm"  method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="phone">Employee ID</label>
+                <input type="number" id="phone" name="id" class="input-field" placeholder="Enter your Employee ID"  title="Enter Employee ID" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="number" id="password" name="pswd" class="input-field" placeholder="Enter numeric password" pattern="\d+" title="Password must contain numbers only" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+    </div>
+</body>
+</html>
